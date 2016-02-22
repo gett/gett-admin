@@ -10,6 +10,7 @@ gett = angular.module('gett', [
 
 require('../node_modules/angular-material/angular-material.min.css'); // TODO: include this by webpack
 require('./public/css/base.css');
+require('./configs/local'); // TODO: require configs via mode
 require('./router');
 
 // Components
