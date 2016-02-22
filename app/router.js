@@ -10,7 +10,7 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
             url: '/home',
             views: {
                 'pageLeft': {
-                    template: require('./components/main/templates/page-left.jade')
+                    template: '<gett-menu></gett-menu>'
                 },
                 'pageRight': {
                     template: '<gett-home></gett-home>'
@@ -21,7 +21,7 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
             url: '/users',
             views: {
                 'pageLeft': {
-                    template: require('./components/main/templates/page-left.jade')
+                    template: '<gett-menu></gett-menu>'
                 },
                 'pageRight': {
                     template: '<gett-users></gett-users>'
@@ -32,7 +32,7 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
             url: '/payments',
             views: {
                 'pageLeft': {
-                    template: require('./components/main/templates/page-left.jade')
+                    template: '<gett-menu></gett-menu>'
                 },
                 'pageRight': {
                     template: '<gett-payments></gett-payments>'
@@ -43,7 +43,7 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
             url: '/shares-files',
             views: {
                 'pageLeft': {
-                    template: require('./components/main/templates/page-left.jade')
+                    template: '<gett-menu></gett-menu>'
                 },
                 'pageRight': {
                     template: '<gett-shares-files></gett-shares-files>'

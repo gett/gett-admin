@@ -6,7 +6,7 @@ function gettHome() {
         restrict: 'E',
         template: require('./templates/home.jade'),
         link: function(scope, elem, attr) {
-            scope.test = 'hi';
+            scope.test = 'Home page';
         }
     }
 }

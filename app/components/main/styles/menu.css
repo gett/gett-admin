@@ -1,0 +1,10 @@
+#main-menu {
+    height: 200px;
+}
+#main-menu .menu-item {
+    border: 1px solid black;
+    border-bottom: none;
+}
+#main-menu .menu-item.menu-bottom-item {
+    border-bottom: 1px solid black;
+}
