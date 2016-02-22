@@ -37,7 +37,6 @@ gulp.task('webpack:build', function(callback) {
         gutil.log("[webpack:build]", stats.toString({
             colors: true
         }));
-        callback();
     });
 
 });

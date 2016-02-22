@@ -6,7 +6,8 @@ module.exports = {
         app: './app/app.js',
         vendor: [
             'angular',
-            'angular-material'
+            'angular-material',
+            'angular-ui-router'
         ]
     },
     output: {
