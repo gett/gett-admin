@@ -1,0 +1,24 @@
+#users-page #search md-input-container {
+    margin: 27px 0 9px 0;
+}
+#users-page #search button {
+    margin-left: 50px;
+}
+#users-grid #grid-header {
+    background-color: #ABABAB;
+}
+#users-grid #grid-header #order-by-email {
+    cursor: pointer;
+}
+#users-grid #grid-header #order-by-email:focus {
+    outline: none;
+}
+#users-grid #grid-header > md-grid-tile, #users-grid .content > md-grid-tile {
+    border: 1px solid black;
+}
+#users-grid .content {
+    cursor: pointer;
+}
+#users-grid .content > md-grid-tile:first-child {
+    overflow-x: auto;
+}

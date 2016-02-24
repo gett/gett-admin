@@ -1,0 +1,92 @@
+#user-page(layout='row')
+    div(flex)
+    div(flex='90', layout='column')
+        gett-header
+        div(layout='row')
+            form#settings(md-whiteframe='10', flex='25', layout='column', layout-align='center center')
+                md-input-container.md-block(layout-fill)
+                    label Email
+                    input(placeholder='Email Address')
+                md-input-container(layout-fill)
+                    label Full name
+                    input(placeholder='Fullname')
+                md-input-container(layout-fill)
+                    label Password
+                    input(type='password', placeholder='Password')
+                md-input-container(layout-fill)
+                    label Confirm
+                    input(placeholder='Confirm password')
+                md-input-container(layout-fill)
+                    label Type
+                    md-select(placeholder='Choose account type', ng-model='settings.type')
+                        md-option(ng-repeat='accountType in accountTypes', ng-bind='accountType')
+                md-datepicker.date(placeholder='Enter date', ng-model='settings.date')
+                md-button.md-raised.save Save
+            md-list(flex='25', flex-offset='5', md-whiteframe='10', layout='column', layout-align='center none')
+                md-list-item(layout-align='center center').md-title User stats
+                md-divider
+                md-list-item.md-subhead
+                    div Shares:
+                    div &nbsp;2
+                md-list-item.md-subhead
+                    div Files:
+                    div &nbsp;213
+                md-list-item.md-subhead
+                    div Storage used:
+                    div &nbsp;1gb (60%)
+                md-list-item.md-subhead
+                    div Daily Traffic:
+                    div &nbsp;1gb (2%)
+            md-list(flex='20', flex-offset='5', md-whiteframe='10', style='height: 100%;', layout='column', layout-align='center center')
+                md-list-item.md-title Warning Zone
+                md-list-item
+                    md-button.md-raised.md-warn Remove account
+        .spacer
+        div(layout='row')
+            div(layout='column', flex)
+                #shares-search(layout='row', layout-align='end center')
+                    md-input-container
+                        label Sharename
+                        input(placeholder='Enter sharename')
+                    md-button.md-raised Go!
+                md-grid-list#shares-grid
+                    md-grid-list.grid-header(md-cols='10', md-row-height='40px', md-gutter='0px')
+                        md-grid-tile(md-colspan='2', ng-click='sharesOrder("sharename")')
+                            span Sharename
+                            i(ng-if='!reverseSharesOrder', class='fa fa-angle-down')
+                            i(ng-if='reverseSharesOrder', class='fa fa-angle-up')
+                        md-grid-tile(md-colspan='3') Title
+                        md-grid-tile Files
+                        md-grid-tile(md-colspan='2') Size
+                        md-grid-tile(md-colspan='2') State
+                    md-grid-list.content(md-cols='10', md-row-height='60px', md-gutter='0px', ng-repeat='share in tempShares | orderBy: sharesOrderCriteria : reverseSharesOrder')
+                        md-grid-tile(md-colspan='2', ng-bind='share.sharename', layout layout-align='center center')
+                        md-grid-tile.title(md-colspan='3', ng-bind='(share | changeTitle)', layout layout-align='center center')
+                        md-grid-tile(ng-bind='share.fileseed', layout layout-align='center center')
+                        md-grid-tile(md-colspan='2', ng-bind='(share.sizeCache | size)', layout layout-align='center center')
+                        md-grid-tile(md-colspan='2', ng-bind='share.readystate', layout layout-align='center center')
+            div(flex='5')
+            div(layout='column', flex)
+                #payments-search(layout='row', layout-align='end center')
+                    md-input-container
+                        label Payment id
+                        input(placeholder='Enter payment id')
+                    md-button.md-raised Go!
+                md-grid-list#payments-grid
+                    md-grid-list.grid-header(md-cols='5', md-row-height='40px', md-gutter='0px')
+                        md-grid-tile(ng-click='paymentsOrder()')
+                            span ID
+                            i(ng-if='!reversePaymentsOrder', class='fa fa-angle-down')
+                            i(ng-if='reversePaymentsOrder', class='fa fa-angle-up')
+                        md-grid-tile When
+                        md-grid-tile Expires
+                        md-grid-tile Amount
+                        md-grid-tile Product
+                    md-grid-list.content(md-cols='5', md-row-height='60px', md-gutter='0px', ng-repeat='payment in tempPayments | orderBy: "id" : reversePaymentsOrder', layout='row' layout-align='center center')
+                        md-grid-tile(ng-bind='payment.id', layout layout-align='center center')
+                        md-grid-tile(ng-bind='(payment.when | date: "d MMM yyyy")', layout layout-align='center center')
+                        md-grid-tile(ng-bind='(payment.expires | date: "d MMM yyyy")', layout layout-align='center center')
+                        md-grid-tile(ng-bind='payment.amount', layout layout-align='center center')
+                        md-grid-tile(ng-bind='payment.product', layout layout-align='center center')
+        .spacer
+    div(flex)

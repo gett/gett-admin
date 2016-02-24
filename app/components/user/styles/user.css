@@ -1,0 +1,44 @@
+#user-page .spacer {
+    height: 50px;
+}
+
+/* settings form start */
+#user-page #settings md-input-container {
+    margin: 0;
+    padding: 2px 16px;
+}
+#user-page #settings md-input-container:first-child {
+    margin-top: 32px;
+}
+#user-page #settings md-input-container label {
+    margin-left: 16px;
+}
+#user-page #settings .date {
+    margin: 8px 0;
+}
+#user-page #settings .save {
+    margin-bottom: 18px;
+}
+/* settings form end */
+
+/* shares and payments grids start */
+#shares-search md-input-container, #payments-search md-input-container {
+    margin: 32px 15px 0 0;
+}
+#shares-grid .grid-header, #payments-grid .grid-header {
+    background-color: #ABABAB;
+    cursor: pointer;
+}
+#shares-grid .grid-header md-grid-tile:focus, #payments-grid .grid-header md-grid-tile:focus {
+    outline: none;
+}
+#shares-grid .grid-header > md-grid-tile, #shares-grid .content > md-grid-tile, #payments-grid .grid-header > md-grid-tile, #payments-grid .content > md-grid-tile {
+    border: 1px solid black;
+}
+#shares-grid .content, #payments-grid .content {
+    cursor: pointer;
+}
+#shares-grid .content .title {
+    overflow: auto;
+}
+/* shares and payments grids end */

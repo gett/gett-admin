@@ -28,6 +28,17 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
                 }
             }
         })
+        .state('main.user', {
+            url: '/users/:userid',
+            views: {
+                'pageLeft': {
+                    template: '<gett-menu></gett-menu>'
+                },
+                'pageRight': {
+                    template: '<gett-user></gett-user>'
+                }
+            }
+        })
         .state('main.payments', {
             url: '/payments',
             views: {

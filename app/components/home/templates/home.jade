@@ -1,16 +1,11 @@
 #login-form(layout='row')
-    div(flex='33')
-    div(flex='33', layout='column', layout-margin, layout-align='center none')
-        div(layout='row' layout-align='center center')
-            div(flex='33') Login
-            div(flex='66')
-                input(ng-model='user.email', tabindex='1')
-        div(layout='row' layout-align='center center')
-            div(flex='33') Password
-            div(flex='66')
-                input(type='password', ng-model='user.password', , tabindex='2')
-        div(layout='row')
-            div(flex='33')
-            div(flex='66')
-                input(type='submit', value='Sign in', ng-click='signin(user)', tabindex='3')
-    div(flex='33')
+    div(flex)
+    form(flex='33', layout='column', layout-align='center center', layout-padding, md-whiteframe='10')
+        md-input-container(layout-fill)
+            label Login
+            input(ng-model='user.email', placeholder='Enter your login')
+        md-input-container(layout-fill)
+            label Password
+            input(ng-model='user.password', type='password', placeholder='Enter your password')
+        md-button.md-raised(ng-click='signin(user)') Singin
+    div(flex)
