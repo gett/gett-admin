@@ -1,14 +1,14 @@
 require('./styles/user.css');
 
 angular.module('gett.components.users.user', [])
-    .directive('gettUser', ['$state', gettUser]);
+    .directive('gettUser', gettUser);
 
-function gettUser($state) {
+function gettUser() {
     return {
         restrict: 'E',
         template: require('./templates/user.jade'),
         link: function(scope, elem, attr) {
-            scope.tempShares = [
+            scope.tempShares = [ // TODO: hardcoded
                 {
                     "userid":"user-C9sNYRhf68ZWRQk93RuFksZbHYUU8XFcSlSq3-",
                     "created":1455303463,
@@ -49,7 +49,7 @@ function gettUser($state) {
                 },
                 {"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323305,"sharename":"1tWRyHY2","sizeCache":2171590,"fileseed":1,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:15:05.387Z","updatedAt":"2016-02-24T14:15:06.779Z","id":"56cdbae959638ea312782798","files":[{"created":1456323305,"createdAt":"2016-02-24T14:15:05.675Z","downloads":0,"fileid":"0","filename":"space-09(copy).jpg","readystate":"ready","share":{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323305,"sharename":"1tWRyHY2","sizeCache":0,"fileseed":0,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:15:05.387Z","updatedAt":"2016-02-24T14:15:05.387Z","id":"56cdbae959638ea312782798"},"sharename":"1tWRyHY2","size":2171590,"type":"image/jpeg","updatedAt":"2016-02-24T14:15:06.773Z","id":"56cdbae90c5578b01243d320"}]},{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323301,"sharename":"3KDRyHY2","sizeCache":1804567,"fileseed":1,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:15:01.904Z","updatedAt":"2016-02-24T14:15:03.438Z","id":"56cdbae52606e5193e813754","files":[{"created":1456323302,"createdAt":"2016-02-24T14:15:02.352Z","downloads":0,"fileid":"0","filename":"output_0FJwBz (copy).gif","readystate":"ready","share":{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323301,"sharename":"3KDRyHY2","sizeCache":0,"fileseed":0,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:15:01.904Z","updatedAt":"2016-02-24T14:15:01.904Z","id":"56cdbae52606e5193e813754"},"sharename":"3KDRyHY2","size":1804567,"type":"image/gif","updatedAt":"2016-02-24T14:15:03.432Z","id":"56cdbae659638ea312782796"}]},{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323298,"sharename":"6ieJyHY2","sizeCache":108360,"fileseed":1,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:14:58.653Z","updatedAt":"2016-02-24T14:14:59.529Z","id":"56cdbae259638ea312782793","files":[{"created":1456323298,"createdAt":"2016-02-24T14:14:58.912Z","downloads":0,"fileid":"0","filename":"thumbnail.jpg","readystate":"ready","share":{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323298,"sharename":"6ieJyHY2","sizeCache":0,"fileseed":0,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:14:58.653Z","updatedAt":"2016-02-24T14:14:58.653Z","id":"56cdbae259638ea312782793"},"sharename":"6ieJyHY2","size":108360,"type":"image/jpeg","updatedAt":"2016-02-24T14:14:59.522Z","id":"56cdbae22606e5193e813753"}]},{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323295,"sharename":"8mfCyHY2","sizeCache":718247,"fileseed":1,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:14:55.695Z","updatedAt":"2016-02-24T14:14:57.420Z","id":"56cdbadf2606e5193e813750","files":[{"created":1456323296,"createdAt":"2016-02-24T14:14:56.233Z","downloads":0,"fileid":"0","filename":"0 - Cover [Monzajer Ft. Hatam, Godaar, 30na].jpg","readystate":"ready","share":{"userid":"user-ozjs2IDTkaoYuL8ycdRyWMbqb11yycpscJdZ2-","created":1456323295,"sharename":"8mfCyHY2","sizeCache":0,"fileseed":0,"downloads":0,"readystate":"remote","createdAt":"2016-02-24T14:14:55.695Z","updatedAt":"2016-02-24T14:14:55.695Z","id":"56cdbadf2606e5193e813750"},"sharename":"8mfCyHY2","size":718247,"type":"image/jpeg","updatedAt":"2016-02-24T14:14:57.412Z","id":"56cdbae059638ea31278278e"}]}
             ];
-            scope.tempPayments = [
+            scope.tempPayments = [ // TODO: hardcoded
                 {
                     id: 'GET111111-1111-111111',
                     when: 1456322378000,
@@ -72,7 +72,7 @@ function gettUser($state) {
                     product: 'Premium Annual'
                 }
             ];
-            scope.accountTypes = [
+            scope.accountTypes = [ // TODO: hardcoded
                 'Anon',
                 'Free',
                 'Premium',

@@ -1,6 +1,7 @@
 gett = angular.module('gett', [
     'ui.router',
     'ngMaterial',
+    'ngResource',
     'gett.components.header',
     'gett.components.menu',
     'gett.components.home',
@@ -24,3 +25,6 @@ require('./components/users/users');
 require('./components/user/user');
 require('./components/payments/payments');
 require('./components/shares-files/shares-files');
+
+// Services
+require('./services/usersService');

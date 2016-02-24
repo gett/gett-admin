@@ -7,7 +7,8 @@ module.exports = {
         vendor: [
             'angular',
             'angular-material',
-            'angular-ui-router'
+            'angular-ui-router',
+            'angular-resource'
         ]
     },
     output: {

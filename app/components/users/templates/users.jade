@@ -4,11 +4,18 @@
         gett-header
         #search(layout='row', layout-align='end center')
             md-input-container(flex='30')
-                input(type='text', placeholder='Enter email here...', ng-model='data.email')
-            md-select(flex='20', flex-offset='5', ng-model='data.option', placeholder='Options')
-                md-option(ng-repeat='option in options', ng-bind='option')
-            md-button.md-raised(ng-click='searchUser(data)') Go!
-        md-grid-list#users-grid
+                input(type='text', placeholder='Enter email here...', ng-model='searchData.email')
+            md-select(flex='20', flex-offset='5', ng-model='searchData.option', placeholder='Options')
+                md-option(ng-repeat='searchOption in searchOptions', ng-bind='searchOption')
+            md-button.md-raised(ng-click='searchUser(searchData)') Go!
+        div(layout='row', layout-align='space-around')
+            md-button.md-raised(ng-click='clearSearchData()', ng-if='(searchData.email.length || searchData.option) && !users.length') Clear search data
+        div(layout='row', layout-align='end center')
+            md-button.md-raised(ng-click='clearTable()', ng-if='users.length') Clear table
+        div(layout='row' layout-align='space-around', ng-if='showProgressCilcular || statusMessage')
+            md-progress-circular(md-mode='indeterminate', md-diameter='100%', ng-if='showProgressCilcular')
+            .md-headline(ng-if='statusMessage', ng-bind='statusMessage')
+        md-grid-list#users-grid(ng-if='users.length')
             md-grid-list#grid-header(md-cols='40', md-row-height='40px', md-gutter='0px')
                 md-grid-tile#order-by-email(md-colspan='9', ng-click='orderByEmail()')
                     span Email&nbsp;
@@ -19,10 +26,10 @@
                 md-grid-tile(md-colspan='3') Shares
                 md-grid-tile(md-colspan='4') Used storage
                 md-grid-tile(md-colspan='16') User id
-            md-grid-list.content(md-cols='40', md-row-height='60px', md-gutter='0px', ng-repeat='user in tempUsers | orderBy: "email" : orderEmail', ui-sref='main.user({userid: user.userid})')
+            md-grid-list.content(md-cols='40', md-row-height='60px', md-gutter='0px', ng-repeat='user in users | orderBy: "email" : orderEmail', ui-sref='main.user({userid: user.userid})')
                 md-grid-tile(md-colspan='9', ng-bind='user.email', layout layout-align='center center')
                 md-grid-tile(md-colspan='4', ng-bind='user.type', layout layout-align='center center')
-                md-grid-tile(md-colspan='4', ng-bind='user.expires == 0 ? "Never" : (user.expires | date: "d MMM yyyy")', layout layout-align='center center')
+                md-grid-tile(md-colspan='4', ng-bind='user.payment ? (user.payment.expires == 0 ? "Never" : (user.payment.expires | date: "d MMM yyyy")) : "No payment info"', layout layout-align='center center')
                 md-grid-tile(md-colspan='3', ng-bind='user.shares', layout layout-align='center center')
                 md-grid-tile(md-colspan='4', ng-bind='(user.usedstorage | size)', layout layout-align='center center')
                 md-grid-tile(md-colspan='16', ng-bind='user.userid', layout layout-align='center center')

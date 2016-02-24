@@ -1,45 +1,48 @@
 require('./styles/users.css');
 
 angular.module('gett.components.users', [])
-    .directive('gettUsers', gettUsers);
+    .directive('gettUsers', ['usersService', gettUsers]);
 
-function gettUsers() {
+function gettUsers(usersService) {
     return {
         restrict: 'E',
         template: require('./templates/users.jade'),
         link: function(scope, elem, attr) {
-            scope.user = {
+            scope.user = { // TODO: hardcoded
                 email: 't1@t1.com'
             };
-            scope.tempUsers = [
-                {
-                    email: 't1@t1.com',
-                    type: 'Free',
-                    expires: 0,
-                    shares: '50',
-                    usedstorage: 2732210,
-                    userid: 'user-C9sNYRhf68ZWRQk93RuFksZbHYUU8XFcSlSq3-'
-                },
-                {
-                    email: 't2@t2.comt2@t2.comt2@t2.com',
-                    type: 'Premium+',
-                    expires: 1456322494000,
-                    shares: '500',
-                    usedstorage: 12732210,
-                    userid: 'user-C9sNYRhf68ZWRQk93RuFksZbHYUU8XFcSlSq4-'
-                },
-                {
-                    email: 't2@t2.com',
-                    type: 'Free',
-                    expires: 1556322494000,
-                    shares: '100',
-                    usedstorage: 22732210,
-                    userid: 'user-C9sNYRhf68ZWRQk93RuFksZbHYUU8XFcSlSq5-'
-                }
+            scope.searchOptions = [ // TODO: hardcoded
+                'first',
+                'second',
+                'third option'
             ];
-            scope.options = ['first', 'second', 'third option'];
+            scope.users = null;
+            scope.clearSearchData = function() {
+                scope.searchData = null;
+                scope.statusMessage = '';
+            };
+            scope.clearTable = function() {
+                scope.users = null;
+            };
             scope.searchUser = function(data) {
-                console.log(data);
+                if(!data)
+                    return;
+                if(data && !data.email)
+                    return;
+                scope.showProgressCilcular = true;
+                scope.statusMessage = '';
+                usersService.getUsers(data.email)
+                    .then(function(response) {
+                        scope.users = response.users;
+                        if(!response.users.length)
+                            scope.statusMessage = 'Users not found';
+                        scope.showProgressCilcular = false;
+                    })
+                    .catch(function(err) {
+                        console.error(err);
+                        scope.statusMessage = 'Something went wrong, watch console log';
+                        scope.showProgressCilcular = false;
+                    });
             };
             scope.orderByEmail = function() {
                 scope.orderEmail = !scope.orderEmail;
