@@ -12,9 +12,8 @@ function gettUsers(usersService) {
                 email: 't1@t1.com'
             };
             scope.searchOptions = [ // TODO: hardcoded
-                'first',
-                'second',
-                'third option'
+                'Case sensitive',
+                'Case insensitive'
             ];
             scope.users = null;
             scope.clearSearchData = function() {
@@ -34,11 +33,15 @@ function gettUsers(usersService) {
                 usersService.getUsers(data.email)
                     .then(function(response) {
                         scope.users = response.users;
-                        if(!response.users.length)
-                            scope.statusMessage = 'Users not found';
                         scope.showProgressCilcular = false;
                     })
                     .catch(function(err) {
+                        if(err && err.status == 404) {
+                            scope.users = null;
+                            scope.statusMessage = 'Users not found';
+                            scope.showProgressCilcular = false;
+                            return;
+                        }
                         console.error(err);
                         scope.statusMessage = 'Something went wrong, watch console log';
                         scope.showProgressCilcular = false;

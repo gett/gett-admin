@@ -9,13 +9,13 @@
                 md-option(ng-repeat='searchOption in searchOptions', ng-bind='searchOption')
             md-button.md-raised(ng-click='searchUser(searchData)') Go!
         div(layout='row', layout-align='space-around')
-            md-button.md-raised(ng-click='clearSearchData()', ng-if='(searchData.email.length || searchData.option) && !users.length') Clear search data
+            md-button.md-raised(ng-click='clearSearchData()', ng-if='(searchData.email.length || searchData.option) && !users') Clear search data
         div(layout='row', layout-align='end center')
-            md-button.md-raised(ng-click='clearTable()', ng-if='users.length') Clear table
+            md-button.md-raised(ng-click='clearTable()', ng-if='users') Clear table
         div(layout='row' layout-align='space-around', ng-if='showProgressCilcular || statusMessage')
             md-progress-circular(md-mode='indeterminate', md-diameter='100%', ng-if='showProgressCilcular')
             .md-headline(ng-if='statusMessage', ng-bind='statusMessage')
-        md-grid-list#users-grid(ng-if='users.length')
+        md-grid-list#users-grid(ng-if='users')
             md-grid-list#grid-header(md-cols='40', md-row-height='40px', md-gutter='0px')
                 md-grid-tile#order-by-email(md-colspan='9', ng-click='orderByEmail()')
                     span Email&nbsp;
@@ -30,7 +30,7 @@
                 md-grid-tile(md-colspan='9', ng-bind='user.email', layout layout-align='center center')
                 md-grid-tile(md-colspan='4', ng-bind='user.type', layout layout-align='center center')
                 md-grid-tile(md-colspan='4', ng-bind='user.payment ? (user.payment.expires == 0 ? "Never" : (user.payment.expires | date: "d MMM yyyy")) : "No payment info"', layout layout-align='center center')
-                md-grid-tile(md-colspan='3', ng-bind='user.shares', layout layout-align='center center')
-                md-grid-tile(md-colspan='4', ng-bind='(user.usedstorage | size)', layout layout-align='center center')
+                md-grid-tile(md-colspan='3', ng-bind='user.shareSeed', layout layout-align='center center')
+                md-grid-tile(md-colspan='4', ng-bind='(user.storage.used | size)', layout layout-align='center center')
                 md-grid-tile(md-colspan='16', ng-bind='user.userid', layout layout-align='center center')
     div(flex='5')
