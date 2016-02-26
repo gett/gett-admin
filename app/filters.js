@@ -37,7 +37,6 @@ angular.module('gett')
                     }
                 }
                 newTitle = newTitle.replace('mp3', 'songs').replace('png', 'images').replace('jpg', 'images').replace('pdf', 'documents');
-
             }
             return newTitle;
         }

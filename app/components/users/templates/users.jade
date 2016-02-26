@@ -5,8 +5,8 @@
         #search(layout='row', layout-align='end center')
             md-input-container(flex='30')
                 input(type='text', placeholder='Enter email here...', ng-model='searchData.email')
-            md-select(flex='20', flex-offset='5', ng-model='searchData.option', placeholder='Options')
-                md-option(ng-repeat='searchOption in searchOptions', ng-bind='searchOption')
+            md-select(flex='30', flex-offset='5', ng-model='searchData.option', placeholder='Options')
+                md-option(ng-repeat='(searchOptionKey, searchOptionValue) in searchOptions', ng-bind='searchOptionValue', ng-value='searchOptionKey')
             md-button.md-raised(ng-click='searchUser(searchData)') Go!
         div(layout='row', layout-align='space-around')
             md-button.md-raised(ng-click='clearSearchData()', ng-if='(searchData.email.length || searchData.option) && !users') Clear search data

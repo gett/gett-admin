@@ -11,10 +11,10 @@ function gettUsers(usersService) {
             scope.user = { // TODO: hardcoded
                 email: 't1@t1.com'
             };
-            scope.searchOptions = [ // TODO: hardcoded
-                'Case sensitive',
-                'Case insensitive'
-            ];
+            scope.searchOptions = {
+                caseSensitive: 'Case sensitive (Default)',
+                caseInSensitive: 'Case insensitive (Low performance!)'
+            };
             scope.users = null;
             scope.clearSearchData = function() {
                 scope.searchData = null;

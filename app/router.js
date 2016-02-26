@@ -1,6 +1,5 @@
-gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+gett.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
 
     $stateProvider
         .state('main', {
@@ -35,7 +34,33 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
                     template: '<gett-menu></gett-menu>'
                 },
                 'pageRight': {
-                    template: '<gett-user></gett-user>'
+                    template: '<gett-user></gett-user>',
+                    resolve: {
+                        selectedUser: ['$stateParams', 'usersService', function ($stateParams, usersService) {
+                            return usersService.getUser($stateParams.userid)
+                                .then(function (response) {
+                                    return response.user;
+                                })
+                                .catch(function (err) {
+                                    console.error(err);
+                                    return false;
+                                });
+                        }],
+                        products: ['usersService', function(usersService) {
+                            return usersService.getProductsList()
+                                .then(function(response) {
+                                    return response.products;
+                                })
+                                .catch(function(err) {
+                                    console.error(err);
+                                    return false;
+                                })
+                        }]
+                    },
+                    controller: ['$scope', 'selectedUser', 'products', function ($scope, selectedUser, products) {
+                        $scope.selectedUser = selectedUser;
+                        $scope.products = products;
+                    }]
                 }
             }
         })
@@ -61,5 +86,6 @@ gett.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $u
                 }
             }
         });
+    $urlRouterProvider.otherwise('/home');
 
 }]);
