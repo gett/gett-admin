@@ -65,7 +65,7 @@ function getStats(user) {
     });
     return {
         totalFiles: totalFiles,
-        usedStoragePercentage : Math.round(user.storage.used / (user.storage.extrastorage || 0 + user.storage.storage) * 100),
+        usedStoragePercentage : Math.round(user.storage.used / ((user.storage.extrastorage || 0) + user.storage.storage) * 100),
         dailyTrafficPercentage : Math.round((user.dailytraffic / user.limits.traffic) * 100)
     };
 }
